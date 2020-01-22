@@ -3,3 +3,9 @@
 ################################################################################
 
 /.vs/MarsRover.Domain/v16
+/MarsRover.ConsoleApp/bin/Debug
+/MarsRover.ConsoleApp/obj/Debug
+/MarsRover.Domain/.vs/MarsRover.Domain/v16
+/MarsRover.Domain/MarsRover.Domain/bin/Debug
+/MarsRover.Domain/MarsRover.Domain/obj/Debug
+/MarsRover.UnitTestProject/obj/Debug
