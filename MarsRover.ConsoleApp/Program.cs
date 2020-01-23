@@ -21,9 +21,9 @@ namespace MarsRover.ConsoleApp
             var count = int.Parse(Console.ReadLine());
             for (int i = 0; i < count; i++)
             {
-                Console.WriteLine($@"Enter the landing position of rover {i + 1}. Format x y orientation as N, S, E or W");
+                Console.WriteLine($@"Enter the landing position of rover {i + 1}. Format: X Y Z (Z = orientation as N, S, E or W)");
                 var startingArray = Console.ReadLine().Split(' ');
-                Console.WriteLine($@"Enter the Commands you want rover {i + 1} to execute.");
+                Console.WriteLine($@"Enter the Commands you want rover {i + 1} to execute. Format: MRLM (M = move,  R = turn right, L = turn left) No spaces.");
                 var commands = Console.ReadLine();
                 var rover = new Domain.MarsRover {Plateau = {Height = plateauHeight, Width = plateauHeight}};
                 rover.Location.Coordinate.X = int.Parse(startingArray[0]);

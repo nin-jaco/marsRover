@@ -10,5 +10,16 @@ namespace MarsRover.Domain
     {
         public Coordinate Coordinate { get; set; } = new Coordinate();
         public DirectionEnum Heading { get; set; }
+
+        public Location()
+        {
+
+        }
+
+        public Location(Coordinate coordinate, DirectionEnum directionEnum)
+        {
+            Coordinate = coordinate;
+            Heading = directionEnum;
+        }
     }
 }
