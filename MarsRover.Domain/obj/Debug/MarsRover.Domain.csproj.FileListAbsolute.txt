@@ -1,0 +1,5 @@
+C:\MarsRover\MarsRover.Domain\MarsRover.Domain\bin\Debug\MarsRover.Domain.dll
+C:\MarsRover\MarsRover.Domain\MarsRover.Domain\bin\Debug\MarsRover.Domain.pdb
+C:\MarsRover\MarsRover.Domain\MarsRover.Domain\obj\Debug\MarsRover.Domain.csprojAssemblyReference.cache
+C:\MarsRover\MarsRover.Domain\MarsRover.Domain\obj\Debug\MarsRover.Domain.dll
+C:\MarsRover\MarsRover.Domain\MarsRover.Domain\obj\Debug\MarsRover.Domain.pdb

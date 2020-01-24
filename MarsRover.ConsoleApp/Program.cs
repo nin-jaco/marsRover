@@ -5,6 +5,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using MarsRover.Domain;
+using MarsRover.Domain.Enums;
+using MarsRover.Domain.Models;
 
 namespace MarsRover.ConsoleApp
 {

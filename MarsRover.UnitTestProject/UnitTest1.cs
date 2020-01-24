@@ -1,5 +1,7 @@
 ﻿using System;
 using MarsRover.Domain;
+using MarsRover.Domain.Enums;
+using MarsRover.Domain.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MarsRover.UnitTestProject

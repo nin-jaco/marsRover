@@ -56,7 +56,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MarsRover.Domain\MarsRover.Domain\MarsRover.Domain.csproj">
+    <ProjectReference Include="..\MarsRover.Domain\MarsRover.Domain.csproj">
       <Project>{a5886425-ba32-4b40-bead-138ed7482602}</Project>
       <Name>MarsRover.Domain</Name>
     </ProjectReference>
