@@ -2,16 +2,13 @@
 {
     public class Plateau
     {
-        public int Width { get; set; }
-        public int Height { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
 
-        public Plateau()
-        { }
-
-        public Plateau(int width, int height)
+        public Plateau(int x, int y)
         {
-            Width = width;
-            Height = height;
+            X = x;
+            Y = y;
         }
     }
 }

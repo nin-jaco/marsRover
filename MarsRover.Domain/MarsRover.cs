@@ -10,23 +10,17 @@ namespace MarsRover.Domain
 {
     public class MarsRover
     {
-        public Plateau Plateau { get; set; } = new Plateau();
-        public Location Location { get; set; } = new Location();
-        public string Commands { get; set; }
+        public Rover Rover { get; set; }
 
-        public MarsRover()
-        { }
-
-        public MarsRover(Plateau plateau, Location startingLocation, string commands)
+        public MarsRover(Rover rover)
         {
-            Plateau = plateau;
-            Location = startingLocation;
-            Commands = commands;
+            Rover = rover;
+            Rover.EndLocation = Rover.StartLocation;
         }
 
-        public Location ExecuteCommands()
+        public Rover ExecuteCommands()
         {
-            var commandArray = Commands.ToCharArray();
+            var commandArray = Rover.Commands.ToCharArray();
             foreach (var c in commandArray)
             {
                 if (c == 'L')
@@ -39,42 +33,85 @@ namespace MarsRover.Domain
                 }
                 if (c == 'M')
                 {
+                    if (!CanRoverMove()) return Rover;
                     Move();
                 }
             }
 
-            return Location;
+            return Rover;
+        }
+
+        private bool CanRoverMove()
+        {
+            var coord = new Coordinate(Rover.EndLocation.Coordinate.X, Rover.EndLocation.Coordinate.Y);
+            switch (Rover.EndLocation.Heading)
+            {
+                case DirectionEnum.N:
+                    coord = new Coordinate(coord.X, coord.Y += 1);
+                    break;
+                case DirectionEnum.E:
+                    coord = new Coordinate(coord.X += 1, coord.Y );
+                    break;
+                case DirectionEnum.S:
+                    coord = new Coordinate(coord.X, coord.Y -= 1);
+                    break;
+                case DirectionEnum.W:
+                    coord = new Coordinate(coord.X -= 1, coord.Y);
+                    break;
+            }
+
+            if (coord.Y < 0 ||
+                coord.Y > Rover.Plateau.Y ||
+                coord.X < 0 ||
+                coord.X > Rover.Plateau.X)
+            {
+                Rover.IsSuccess = false;
+                Rover.Message = $@"Rover {Rover.RoverId} will be moving out of bounds of the Plateau and will crash and burn.";
+                return false;
+            }
+
+            var collisionCoordinate = Rover.Hazards.FirstOrDefault(p =>
+                p.X == coord.X && p.Y == coord.Y);
+            if (collisionCoordinate != null)
+            {
+                Rover.IsSuccess = false;
+                Rover.Message = $@"Rover {Rover.RoverId} will be crashing into another stationary rover.";
+                return false;
+            }
+
+            Rover.IsSuccess = true;
+            return true;
         }
 
         private void TurnLeft()
         {
-            var rotation = (int) Location.Heading;
+            var rotation = (int)Rover.EndLocation.Heading;
             rotation -= 90;
-            Location.Heading = rotation == 0 ? DirectionEnum.N : (DirectionEnum) rotation;
+            Rover.EndLocation.Heading = rotation == 0 ? DirectionEnum.N : (DirectionEnum) rotation;
         }
 
         private void TurnRight()
         {
-            var rotation = (int)Location.Heading;
+            var rotation = (int)Rover.EndLocation.Heading;
             rotation += 90;
-            Location.Heading = rotation > 360 ? (DirectionEnum)(rotation - 360) : (DirectionEnum) rotation;
+            Rover.EndLocation.Heading = rotation > 360 ? (DirectionEnum)(rotation - 360) : (DirectionEnum) rotation;
         }
 
         private void Move()
         {
-            switch (Location.Heading)
+            switch (Rover.EndLocation.Heading)
             {
                 case DirectionEnum.N:
-                    Location.Coordinate.Y += 1;
+                    Rover.EndLocation.Coordinate.Y += 1;
                     break;
                 case DirectionEnum.E:
-                    Location.Coordinate.X += 1;
+                    Rover.EndLocation.Coordinate.X += 1;
                     break;
                 case DirectionEnum.S:
-                    Location.Coordinate.Y -= 1;
+                    Rover.EndLocation.Coordinate.Y -= 1;
                     break;
                 case DirectionEnum.W:
-                    Location.Coordinate.X -= 1;
+                    Rover.EndLocation.Coordinate.X -= 1;
                     break;
             }
         }
